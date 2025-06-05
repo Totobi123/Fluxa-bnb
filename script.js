@@ -161,12 +161,11 @@ function copyToClipboard(text, label) {
 // Open WhatsApp with device ID
 function openWhatsApp() {
     const deviceId = document.getElementById('deviceId').textContent;
-    const activationCode = localStorage.getItem('deviceIdOriginal') || 'Loading...';
     const deviceInfo = deviceAuthService.getDeviceFingerprint();
-    
+
     const message = `🔐 DEVICE ACTIVATION REQUEST
 
-📱 This is my activation code: ${activationCode}
+📱 I need activation for my device.
 
 📋 Device Details:
 • Device ID: ${deviceId}
@@ -192,12 +191,11 @@ Thank you! 🙏`;
 // Open alternative WhatsApp
 function openAlternativeWhatsApp() {
     const deviceId = document.getElementById('deviceId').textContent;
-    const activationCode = localStorage.getItem('deviceIdOriginal') || 'Loading...';
     const deviceInfo = deviceAuthService.getDeviceFingerprint();
-    
+
     const message = `🔐 FLUXA WALLET ACTIVATION
 
-📱 Activation Code: ${activationCode}
+📱 I need activation for my device.
 
 📋 Device Information:
 • ID: ${deviceId}
